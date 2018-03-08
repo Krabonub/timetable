@@ -1,8 +1,9 @@
 .timetable .background_hour {
+    padding-left:5px;
     font-size:16px;
     font-weight:200;
     box-sizing: border-box;
-    width: 400px;
+    width: 250px;
     height: 120px;
     background: #FFFFFF;
     color: grey;
@@ -14,8 +15,8 @@
 }
 
 .timetable .task {
-    font-size:14px;
     box-sizing: border-box;
+    font-size:14px;
     width:200px;
     position: absolute;
     background: #E2ECF5;
@@ -25,4 +26,13 @@
     max-width: 200px;
     border-left: 2px solid #6E9ECF;
     padding: 5px;
+}
+.timetable .left_task{
+    left:50px;
+    width:100px;
+}
+
+.timetable .right_task{
+    left:150px;
+    width:100px;
 }

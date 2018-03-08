@@ -16,15 +16,19 @@ class Day extends Component {
             {this.props.appStore.tasks.map((item, index, arr) => {
                 let topVar = 2 * item.start + 'px';
                 let heightVar = 2 * item.duration + 'px';
-                /*if(){
-
-                }else{
-
-                }*/
-                let widthVar = 200 + "px";
-                let leftVar = 50 +"px";
-                return <div className="task"
-                            style={{top: topVar, height: heightVar, width: widthVar, left: leftVar}}>{item.title}</div>;
+                let classVar = '';
+                if (index !== (arr.length - 1)) {
+                    if ((item.start + item.duration) > arr[index + 1].start) {
+                        classVar = "right_task";
+                    }
+                }
+                if (index !== 0) {
+                    if ((arr[index - 1].start + arr[index - 1].duration) > item.start) {
+                        classVar = "left_task";
+                    }
+                }
+                return <div className={"task" + " " + classVar}
+                            style={{top: topVar, height: heightVar}}>{item.title}</div>;
             })}
         </div>);
     }
