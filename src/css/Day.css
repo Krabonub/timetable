@@ -1,0 +1,28 @@
+.timetable .background_hour {
+    font-size:16px;
+    font-weight:200;
+    box-sizing: border-box;
+    width: 400px;
+    height: 120px;
+    background: #FFFFFF;
+    color: grey;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    border-top: 1px solid #BDBDBD;
+}
+
+.timetable .task {
+    font-size:14px;
+    box-sizing: border-box;
+    width:200px;
+    position: absolute;
+    background: #E2ECF5;
+    top: 0;
+    left: 50px;
+    color: black;
+    max-width: 200px;
+    border-left: 2px solid #6E9ECF;
+    padding: 5px;
+}
