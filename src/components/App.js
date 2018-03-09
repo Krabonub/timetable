@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Day from './Day';
 import {connect} from 'react-redux';
-import Control_panel from './Control_panel'
+import ControlPanel from './ControlPanel'
 import '../css/App.css';
 
 class App extends Component {
@@ -11,8 +11,8 @@ class App extends Component {
     }
     render() {
         return (
-            <div class="app">
-                <Control_panel></Control_panel>
+            <div className="app">
+                <ControlPanel></ControlPanel>
                 <Day></Day>
             </div>
         );

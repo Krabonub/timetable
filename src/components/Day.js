@@ -22,12 +22,22 @@ class Day extends Component {
                 let classVar = '';
                 if (index !== (arr.length - 1)) {
                     if ((item.start + item.duration) > arr[index + 1].start) {
-                        classVar = "right_task";
+                        if(index%2){
+                            classVar = "right_task";
+                        }
+                        else{
+                            classVar = "left_task";
+                        }
                     }
                 }
                 if (index !== 0) {
                     if ((arr[index - 1].start + arr[index - 1].duration) > item.start) {
-                        classVar = "left_task";
+                        if(index%2){
+                            classVar = "right_task";
+                        }
+                        else{
+                            classVar = "left_task";
+                        }
                     }
                 }
                 return <div key={item.start} className={"task" + " " + classVar}
@@ -45,5 +55,12 @@ function mapStateToProps(state) {
 
 export default connect(
     mapStateToProps,
-    dispatch => ({})
+    dispatch => ({
+        onAddTrack:(eventObj)=>{
+            dispatch({
+                type:"ADD_EVENT",
+                payload:eventObj
+            })
+        }
+    })
 )(Day);
