@@ -1,16 +1,18 @@
 import React, {Component} from 'react';
-import Day from './components/Day';
 import {connect} from 'react-redux';
 
-class App extends Component {
+class Control_panel extends Component {
     constructor(props){
         super(props);
-        this.state = {};
+        //this.state = {};
     }
     render() {
         return (
             <div>
-                <Day></Day>
+                <form>
+                    <label>Action name : <input type="text" /></label>
+                    <button>Add</button>
+                </form>
             </div>
         );
     }
@@ -25,4 +27,4 @@ function mapStateToProps(state){
 export default connect(
     mapStateToProps,
     dispatch =>({})
-)(App);
+)(Control_panel);

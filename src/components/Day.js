@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import '../css/Day.css';
 
 class Day extends Component {
     constructor(props) {
