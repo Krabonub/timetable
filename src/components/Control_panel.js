@@ -11,7 +11,7 @@ class Control_panel extends Component {
             <div>
                 <form>
                     <label>Action name : <input type="text" /></label>
-                    <button>Add</button>
+                    <button type="button">Add</button>
                 </form>
             </div>
         );
