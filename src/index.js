@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import './css/index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+//import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 
 
 /////////////////////// Redux ///////////////////
@@ -30,11 +30,13 @@ const initialStore = {
 //reducer
 function reducer(state = initialStore, action) {
     //console.log(action);
-    /*
-    if (action.type === "ADD_STRING") {
-        return [...state, action.payload];
+
+    if (action.type === "ADD_EVENT") {
+        return {
+            ...state,
+            tasks:[...state.tasks, action.payload]
+        };
     }
-    */
     return state;
 }
 
@@ -43,7 +45,7 @@ const store = createStore(reducer);
 
 //subscribe on dispatch
 store.subscribe(() => {
-    //console.log(store.getState());
+    console.log(store.getState());
 });
 
 //dispatch
