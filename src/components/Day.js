@@ -5,13 +5,17 @@ import '../css/Day.css';
 class Day extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        //this.state = {};
     }
 
     render() {
         return (<div className="timetable">
             {this.props.appStore.workHours.map((item, index, arr) => {
-                return <div className="background_hour">{item}</div>;
+                return (
+                    <div key={item} className="background_hour">
+                        {item + ".00"}
+                        <div className="half_an_hour">{item + ".30"}</div>
+                    </div>);
             })}
             {this.props.appStore.tasks.map((item, index, arr) => {
                 let topVar = 2 * item.start + 'px';
@@ -27,7 +31,7 @@ class Day extends Component {
                         classVar = "left_task";
                     }
                 }
-                return <div className={"task" + " " + classVar}
+                return <div key={item.start} className={"task" + " " + classVar}
                             style={{top: topVar, height: heightVar}}>{item.title}</div>;
             })}
         </div>);

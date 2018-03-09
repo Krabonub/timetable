@@ -11,7 +11,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 //initial store
 const initialStore = {
-    workHours: ['8.00', '9.00', '10.00', '11.00', '12.00', '1.00', '2.00', '3.00', '4.00', '5.00'],
+    workHours: ['8', '9', '10', '11', '12', '1', '2', '3', '4', '5'],
     tasks: [
         {start: 0, duration: 15, title: "Exercise"},
         {start: 25, duration: 30, title: "Travel to work"},
