@@ -34,7 +34,7 @@ function reducer(state = initialStore, action) {
     if (action.type === "ADD_EVENT") {
         return {
             ...state,
-            tasks:[...state.tasks, action.payload]
+            tasks: [...state.tasks, {...action.payload, id: state.tasks.length}]
         };
     }
     return state;
