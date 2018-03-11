@@ -60,3 +60,51 @@
     left: 150px;
     width: 100px;
 }
+
+.control-panel-form {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    margin:10px;
+    width:300px;
+}
+.control-panel-form .input-container{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+.control-panel-form .input-container .labels{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-end;
+}
+
+.control-panel-form .input-container .inputs{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
+}
+
+.input-container .labels *, .input-container .inputs *{
+    height:22px;
+    box-sizing:border-box;
+    margin:5px 0;
+}
+
+.input-container .labels *{
+    margin-right:5px;
+}
+
+.input-container .inputs *{
+    width:200px;
+}
+
+.control-panel-form button{
+    width:300px;
+}

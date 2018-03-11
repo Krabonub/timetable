@@ -8,7 +8,6 @@ import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 //import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 
-
 /////////////////////// Redux ///////////////////
 
 //initial store
@@ -24,19 +23,82 @@ const initialStore = {
         {start: 360, duration: 30, title: "Skype call"},
         {start: 370, duration: 45, title: "Follow up with designer"},
         {start: 405, duration: 30, title: "Push up branch"}
-    ]
+    ],
+    sortState:function(){
+        this.tasks.sort((a, b) => {
+            if (a.start > b.start) return 1;
+            if (a.start < b.start) return -1;
+        });
+    },
+    editBusyTime:function(){
+        this.busyTime = [];
+        for (let i = 0; i < this.tasks.length - 1; i++) {
+            if (this.tasks[i].start + this.tasks[i].duration > this.tasks[i + 1].start) {
+                let tmpEnd;
+                if ((this.tasks[i + 1].start + this.tasks[i + 1].duration) < (this.tasks[i].start + this.tasks[i].duration)) {
+                    tmpEnd = this.tasks[i + 1].start + this.tasks[i + 1].duration;
+                }
+                else {
+                    tmpEnd = this.tasks[i].start + this.tasks[i].duration;
+                }
+                this.busyTime.push({
+                    start: this.tasks[i + 1].start,
+                    end: tmpEnd
+                });
+            }
+        }
+    }
 };
 
 //reducer
 function reducer(state = initialStore, action) {
-    //console.log(action);
-
     if (action.type === "ADD_EVENT") {
-        return {
+        for (let item of state.busyTime) {
+            if (action.payload.start > item.start && action.payload.start < item.end) {
+                alert("This time is busy!");
+                return state;
+            }
+            if (action.payload.start + action.payload.duration > item.start && action.payload.start + action.payload.duration < item.end) {
+                alert("This time is busy!");
+                return state;
+            }
+            if (action.payload.start < item.start && action.payload.start + action.payload.duration > item.end) {
+                alert("This time is busy!");
+                return state;
+            }
+            if (action.payload.start > item.start && action.payload.start + action.payload.duration < item.end) {
+                alert("This time is busy!");
+                return state;
+            }
+        }
+        for (let item of state.tasks) {
+            if (item.start === action.payload.start) {
+                alert("You already have event starting at this time!");
+                return state;
+            }
+        }
+        let stateObj = {
             ...state,
-            tasks: [...state.tasks, {...action.payload, id: state.tasks.length}]
+            tasks: [...state.tasks, {...action.payload}]
         };
+        stateObj.sortState.call(stateObj);
+        stateObj.editBusyTime.call(stateObj);
+        return stateObj;
     }
+    if (action.type === "DELETE_EVENT") {
+        let tmpTasks = [...state.tasks];
+        tmpTasks.splice(action.payload, 1);
+
+        let stateObj = {
+            ...state,
+            tasks: tmpTasks
+        };
+        stateObj.sortState.call(stateObj);
+        stateObj.editBusyTime.call(stateObj);
+        return stateObj;
+    }
+    state.sortState.call(state);
+    state.editBusyTime.call(state);
     return state;
 }
 

@@ -22,20 +22,20 @@ class Day extends Component {
                 let classVar = '';
                 if (index !== (arr.length - 1)) {
                     if ((item.start + item.duration) > arr[index + 1].start) {
-                        if(index%2){
+                        if (index % 2) {
                             classVar = "right_task";
                         }
-                        else{
+                        else {
                             classVar = "left_task";
                         }
                     }
                 }
                 if (index !== 0) {
                     if ((arr[index - 1].start + arr[index - 1].duration) > item.start) {
-                        if(index%2){
+                        if (index % 2) {
                             classVar = "right_task";
                         }
-                        else{
+                        else {
                             classVar = "left_task";
                         }
                     }
@@ -56,10 +56,10 @@ function mapStateToProps(state) {
 export default connect(
     mapStateToProps,
     dispatch => ({
-        onAddTrack:(eventObj)=>{
+        onDeleteEvent: (eventIndex) => {
             dispatch({
-                type:"ADD_EVENT",
-                payload:eventObj
+                type: "DELETE_EVENT",
+                payload: eventIndex
             })
         }
     })
