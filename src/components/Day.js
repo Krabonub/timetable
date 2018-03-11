@@ -7,6 +7,10 @@ class Day extends Component {
         //this.state = {};
     }
 
+    deleteEvent(eventIndex){
+        this.props.onDeleteEvent(eventIndex);
+    }
+
     render() {
         return (<div className="timetable">
             {this.props.appStore.workHours.map((item, index, arr) => {
@@ -41,7 +45,7 @@ class Day extends Component {
                     }
                 }
                 return <div key={item.start} className={"task" + " " + classVar}
-                            style={{top: topVar, height: heightVar}}>{item.title}</div>;
+                            style={{top: topVar, height: heightVar}} onContextMenu={this.deleteEvent.bind(this,index)}>{item.title}</div>;
             })}
         </div>);
     }

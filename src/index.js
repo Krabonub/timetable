@@ -8,9 +8,13 @@ import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 //import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 
+//set off context menu
+document.oncontextmenu = function (){return false};
+
 /////////////////////// Redux ///////////////////
 
 //initial store
+
 const initialStore = {
     workHours: ['8', '9', '10', '11', '12', '1', '2', '3', '4', '5'],
     tasks: [
@@ -85,7 +89,7 @@ function reducer(state = initialStore, action) {
         stateObj.editBusyTime.call(stateObj);
         return stateObj;
     }
-    if (action.type === "DELETE_EVENT") {
+    else if (action.type === "DELETE_EVENT") {
         let tmpTasks = [...state.tasks];
         tmpTasks.splice(action.payload, 1);
 
