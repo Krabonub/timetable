@@ -38,6 +38,7 @@
 }
 
 .timetable .task {
+    cursor: pointer;
     box-sizing: border-box;
     font-size: 14px;
     width: 200px;
@@ -62,50 +63,59 @@
 }
 
 .control-panel-form {
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    margin:10px;
-    width:300px;
-}
-.control-panel-form .input-container{
-    width:100%;
-    display:flex;
-    flex-direction:row;
-    justify-content:flex-end;
-    align-items:center;
-    margin-bottom:10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    width: 300px;
 }
 
-.control-panel-form .input-container .labels{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:flex-end;
+.control-panel-form .input-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-.control-panel-form .input-container .inputs{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:flex-start;
+.control-panel-form .input-container .labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
 }
 
-.input-container .labels *, .input-container .inputs *{
-    height:22px;
-    box-sizing:border-box;
-    margin:5px 0;
+.control-panel-form .input-container .inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 
-.input-container .labels *{
-    margin-right:5px;
+.input-container .labels *, .input-container .inputs * {
+    height: 22px;
+    box-sizing: border-box;
+    margin: 5px 0;
 }
 
-.input-container .inputs *{
-    width:200px;
+.input-container .labels * {
+    margin-right: 5px;
 }
 
-.control-panel-form button{
-    width:300px;
+.input-container .inputs * {
+    width: 200px;
+}
+
+.control-panel-form button {
+    width: 300px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
 }

@@ -6,10 +6,11 @@ import {Provider} from 'react-redux';
 import './css/index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
-//import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 
 //set off context menu
-document.oncontextmenu = function (){return false};
+document.oncontextmenu = function () {
+    return false
+};
 
 /////////////////////// Redux ///////////////////
 
@@ -17,7 +18,7 @@ document.oncontextmenu = function (){return false};
 
 const initialStore = {
     workHours: ['8', '9', '10', '11', '12', '1', '2', '3', '4', '5'],
-    tasks: [
+    events: [
         {start: 0, duration: 15, title: "Exercise"},
         {start: 25, duration: 30, title: "Travel to work"},
         {start: 30, duration: 30, title: "Plan the day"},
@@ -28,25 +29,25 @@ const initialStore = {
         {start: 370, duration: 45, title: "Follow up with designer"},
         {start: 405, duration: 30, title: "Push up branch"}
     ],
-    sortState:function(){
-        this.tasks.sort((a, b) => {
+    sortState: function () {
+        this.events.sort((a, b) => {
             if (a.start > b.start) return 1;
             if (a.start < b.start) return -1;
         });
     },
-    editBusyTime:function(){
+    editBusyTime: function () {
         this.busyTime = [];
-        for (let i = 0; i < this.tasks.length - 1; i++) {
-            if (this.tasks[i].start + this.tasks[i].duration > this.tasks[i + 1].start) {
+        for (let i = 0; i < this.events.length - 1; i++) {
+            if (this.events[i].start + this.events[i].duration > this.events[i + 1].start) {
                 let tmpEnd;
-                if ((this.tasks[i + 1].start + this.tasks[i + 1].duration) < (this.tasks[i].start + this.tasks[i].duration)) {
-                    tmpEnd = this.tasks[i + 1].start + this.tasks[i + 1].duration;
+                if ((this.events[i + 1].start + this.events[i + 1].duration) < (this.events[i].start + this.events[i].duration)) {
+                    tmpEnd = this.events[i + 1].start + this.events[i + 1].duration;
                 }
                 else {
-                    tmpEnd = this.tasks[i].start + this.tasks[i].duration;
+                    tmpEnd = this.events[i].start + this.events[i].duration;
                 }
                 this.busyTime.push({
-                    start: this.tasks[i + 1].start,
+                    start: this.events[i + 1].start,
                     end: tmpEnd
                 });
             }
@@ -75,7 +76,7 @@ function reducer(state = initialStore, action) {
                 return state;
             }
         }
-        for (let item of state.tasks) {
+        for (let item of state.events) {
             if (item.start === action.payload.start) {
                 alert("You already have event starting at this time!");
                 return state;
@@ -83,19 +84,19 @@ function reducer(state = initialStore, action) {
         }
         let stateObj = {
             ...state,
-            tasks: [...state.tasks, {...action.payload}]
+            events: [...state.events, {...action.payload}]
         };
         stateObj.sortState.call(stateObj);
         stateObj.editBusyTime.call(stateObj);
         return stateObj;
     }
     else if (action.type === "DELETE_EVENT") {
-        let tmpTasks = [...state.tasks];
-        tmpTasks.splice(action.payload, 1);
+        let tmpEvents = [...state.events];
+        tmpEvents.splice(action.payload, 1);
 
         let stateObj = {
             ...state,
-            tasks: tmpTasks
+            events: tmpEvents
         };
         stateObj.sortState.call(stateObj);
         stateObj.editBusyTime.call(stateObj);
@@ -107,7 +108,7 @@ function reducer(state = initialStore, action) {
 }
 
 //store
-const store = createStore(reducer);
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 //subscribe on dispatch
 store.subscribe(() => {
@@ -119,7 +120,6 @@ store.subscribe(() => {
 store.dispatch({ type : "ADD_STRING", payload : "Test string to dispatch" });
 */
 /////////////////////// /Redux ///////////////////
-
 
 ReactDOM.render(
     <Provider store={store}>
