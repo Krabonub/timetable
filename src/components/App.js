@@ -1,31 +1,32 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import ControlPanel from './ControlPanel';
-import Day from './Day';
 import '../css/App.css';
+import Main from './Main';
+import LoginForm from "./LoginForm";
+import {Switch, Route, Link} from 'react-router-dom';
 
 class App extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         //this.state = {};
     }
+
     render() {
         return (
-            <div className="app">
-                <ControlPanel></ControlPanel>
-                <Day></Day>
+            <div>
+                <nav>
+                    <ul>
+                        <li><Link to='/login'>Login</Link></li>
+                        <li><Link to='/timetable'>Timetable</Link></li>
+                    </ul>
+                </nav>
+                <Switch>
+                    <Route exact path='/login' component={LoginForm}/>
+                    <Route exact path='/timetable' component={Main}/>
+                </Switch>
             </div>
         );
     }
 }
 
-function mapStateToProps(state){
-    return {
-        appStore : state
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    dispatch =>({})
-)(App);
+export default App;

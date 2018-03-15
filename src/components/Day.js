@@ -56,7 +56,7 @@ class Day extends Component {
 
 function mapStateToProps(state) {
     return {
-        store: state
+        store: state.mainReducer
     };
 }
 

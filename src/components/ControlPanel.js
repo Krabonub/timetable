@@ -24,9 +24,11 @@ class ControlPanel extends Component {
         else {
             alert("Wrong input!")
         }
+        /*
         this.eventNameInput.value = '';
         this.eventStartInput.value = '';
         this.eventDurationInput.value = '';
+        */
     }
 
     render() {
@@ -59,7 +61,7 @@ class ControlPanel extends Component {
 
 function mapStateToProps(state) {
     return {
-        appStore: state
+        appStore: state.mainReducer
     };
 }
 
