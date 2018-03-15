@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Day from './Day';
 import {connect} from 'react-redux';
-import ControlPanel from './ControlPanel'
+import ControlPanel from './ControlPanel';
+import Day from './Day';
 import '../css/App.css';
 
 class App extends Component {

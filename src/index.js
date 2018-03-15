@@ -6,10 +6,11 @@ import {Provider} from 'react-redux';
 import './css/index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
+import {BrowserRouter} from 'react-router-dom';
 
 //set off context menu
 document.oncontextmenu = function () {
-    return false
+    return false;
 };
 
 /////////////////////// Redux ///////////////////
@@ -123,6 +124,8 @@ store.dispatch({ type : "ADD_STRING", payload : "Test string to dispatch" });
 
 ReactDOM.render(
     <Provider store={store}>
-        <App/>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
     </Provider>, document.getElementById('root'));
 registerServiceWorker();
