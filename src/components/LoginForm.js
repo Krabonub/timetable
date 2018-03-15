@@ -1,10 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+//import { push } from 'react-router-redux';
 
 class LoginForm extends Component {
     constructor(props) {
         super(props);
+        console.log(this.props);
         //this.state = {};
+    }
+
+    go(path){
+        this.props.history.push(path);
     }
 
     render() {
@@ -14,7 +20,7 @@ class LoginForm extends Component {
                 <input type="email" id="email"/>
                 <label htmlFor="password">password</label>
                 <input type="password" id="password"/>
-                <button type="button">LogIn</button>
+                <button type="button" onClick={this.go.bind(this,"/timetable")}>LogIn</button>
             </form>
         );
     }
